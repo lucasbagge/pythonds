@@ -1,0 +1,3089 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pandas &#8212; My sample book</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Machine Learning" href="ml.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ml.html">
+   Machine Learning
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Pandas.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FPandas.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/Pandas.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#series-og-dataframes">
+   Series og Dataframes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kategorisk-variabler">
+     Kategorisk variabler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dunder-operator">
+     Dunder operator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataframe">
+     Dataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aggregation">
+   Aggregation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggandaggregationstrings">
+     .aggandAggregationStrings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pivot-table">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pivot_table
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#crosstab">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       crosstab
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#groupby">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       groupby
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forskel-mellem-funktionerne">
+     Forskel mellem funktionerne
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tidsserier-resample">
+     Tidsserier
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .resample
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#melting-transposing-and-stacking-data">
+   Melting, Transposing, and Stacking Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#melting">
+     Melting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#un-melting">
+     Un melting
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Pandas</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#series-og-dataframes">
+   Series og Dataframes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kategorisk-variabler">
+     Kategorisk variabler
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dunder-operator">
+     Dunder operator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataframe">
+     Dataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aggregation">
+   Aggregation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aggandaggregationstrings">
+     .aggandAggregationStrings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pivot-table">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pivot_table
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#crosstab">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       crosstab
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#groupby">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       groupby
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forskel-mellem-funktionerne">
+     Forskel mellem funktionerne
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tidsserier-resample">
+     Tidsserier
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .resample
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#melting-transposing-and-stacking-data">
+   Melting, Transposing, and Stacking Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#melting">
+     Melting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#un-melting">
+     Un melting
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="pandas">
+<h1>Pandas<a class="headerlink" href="#pandas" title="Permalink to this headline">¶</a></h1>
+<p>A work though of the most important concept in python most essentiel data tools, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
+<div class="section" id="series-og-dataframes">
+<h2>Series og Dataframes<a class="headerlink" href="#series-og-dataframes" title="Permalink to this headline">¶</a></h2>
+<p>En af de første ting som er værd at forstå ved Pandas er at det hovedsaglig er bygget af to data struktur:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Serier</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Dataframes</span></code></p></li>
+</ul>
+<p><img alt="" src="_images/fig1.png" /></p>
+<p><em>Figur 1: Forskel mellem Serie og dataframes.</em></p>
+<p>At forstå at der er en forskel mellem de to struktur vil gerne en i ens brug af Pandas. Da dataframes er et bundt af serier giver det mening at lave et deep dive ind i serier.</p>
+<p><img alt="" src="_images/fig2.png" /></p>
+<p><em>Figur 2: Figuren viser forholdet mellem data strukturen i pandas.</em></p>
+<p>Lad os nu lave en panda serie.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">songs2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">145</span><span class="p">,</span> <span class="mi">142</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">13</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">)</span>
+<span class="n">songs2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    145
+1    142
+2     38
+3     13
+Name: counts, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">songs3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">145</span><span class="p">,</span> <span class="mi">142</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">13</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Numpy: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">songs3</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pandas: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">songs2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numpy: 
+ 142
+Pandas: 
+ 142
+</pre></div>
+</div>
+</div>
+</div>
+<p>Venstre kolonne, som ikke er en del af selve data værdien er vores index.</p>
+<p>En Pandas serier og numpy array er meget lig hinanden og kan begge lave index operationer.</p>
+<div class="section" id="kategorisk-variabler">
+<h3>Kategorisk variabler<a class="headerlink" href="#kategorisk-variabler" title="Permalink to this headline">¶</a></h3>
+<p>Hvis man ved at en serier har få værdier kan man bruge en <code class="docutils literal notranslate"><span class="pre">kategorisk</span></code> variabel som har fordelene:</p>
+<ul class="simple">
+<li><p>Bruger mindre hukommelse end strings.</p></li>
+<li><p>Forbedre præsentation.</p></li>
+<li><p>Ordre</p></li>
+</ul>
+<p>En fordel ved kategorisk variabler er de kan indeholder dato, tal og bogstaver som hhv. kan konverteres til et andet format.</p>
+<p>En kategori kan laves med <code class="docutils literal notranslate"><span class="pre">dtype=category</span></code> eller med <code class="docutils literal notranslate"><span class="pre">.astype(&quot;category&quot;)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;xs&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;xl&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">s</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    xs
+1     s
+2     m
+3     l
+4    xl
+dtype: category
+Categories (5, object): [&#39;l&#39;, &#39;m&#39;, &#39;s&#39;, &#39;xl&#39;, &#39;xs&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;xs&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;xl&#39;</span><span class="p">])</span>
+
+<span class="n">size_type</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">pd</span>
+    <span class="o">.</span><span class="n">api</span>
+    <span class="o">.</span><span class="n">types</span>
+    <span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">(</span><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">],</span> 
+                      <span class="n">ordered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">s3</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">size_type</span><span class="p">)</span>   
+
+<span class="n">s3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      m
+1      l
+2    NaN
+3      s
+4    NaN
+dtype: category
+Categories (3, object): [&#39;s&#39; &lt; &#39;m&#39; &lt; &#39;l&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s3</span> <span class="o">&gt;</span> <span class="s1">&#39;s&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     True
+1     True
+2    False
+3    False
+4    False
+dtype: bool
+</pre></div>
+</div>
+</div>
+</div>
+<p>Den forrig funktion transformerede vi om til en ordre kategory, men vi kan også gøre det med det samme.</p>
+<p>Vi kan med <code class="docutils literal notranslate"><span class="pre">CategoricalDtype</span></code> lave en kategori med en ordre.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;xs&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;xl&#39;</span><span class="p">])</span>
+
+<span class="n">size_type</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">pd</span>
+    <span class="o">.</span><span class="n">api</span>
+    <span class="o">.</span><span class="n">types</span>
+    <span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">(</span><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">],</span> 
+                      <span class="n">ordered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">s3</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">size_type</span><span class="p">)</span>   
+
+<span class="n">s3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      m
+1      l
+2    NaN
+3      s
+4    NaN
+dtype: category
+Categories (3, object): [&#39;s&#39; &lt; &#39;m&#39; &lt; &#39;l&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dunder-operator">
+<h3>Dunder operator<a class="headerlink" href="#dunder-operator" title="Permalink to this headline">¶</a></h3>
+<p>Dunder metoder kendes også under “operator” eller “magic” metoder. Helt kort er de beskrivelser på hvordan Python reagerer til operationer. F.eks. når man bruger + så vil man nedenunder benytte sig af <code class="docutils literal notranslate"><span class="pre">.__add__</span></code> metoden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dunder metoden&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="sa">f</span><span class="s1">&#39;hvad sker der egentlig: </span><span class="si">{</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dunder metoden 4
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;hvad sker der egentlig: 6&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataframe">
+<h3>Dataframe<a class="headerlink" href="#dataframe" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="aggregation">
+<h2>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h2>
+<p>I pandas er der flere måde at summer data på.</p>
+<p>Dette afsnit omhandler nogle af disse metoder. Her vil vi allerede først starte ud med den simple <code class="docutils literal notranslate"><span class="pre">.agg</span></code> og udvide det til de mere omfattende metode; <code class="docutils literal notranslate"><span class="pre">.pivot_table</span></code>, <code class="docutils literal notranslate"><span class="pre">.groupby</span></code> og <code class="docutils literal notranslate"><span class="pre">.crossbar</span></code>.</p>
+<p>Disse funktioner minder meget om hinanden og gør i bund og grund de samme ting.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metode</p></th>
+<th class="head"><p>Beskrivelse</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>s.agg(func=None, axis=0, *args, **kwargs)</p></td>
+<td><p>Returns a scalar if func is a single aggregation function. Returns a series if a list of aggregations are passed to func.</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.all(axis=0, bool_only=None, skipna=True, level=None)</p></td>
+<td><p>Returns True if every value is truthy. Otherwise False</p></td>
+</tr>
+<tr class="row-even"><td><p>s.any(axis=0, bool_only=None, skipna=True, level=None)</p></td>
+<td><p>Returns True if at least one value is truthy. Otherwise False</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.autocorr(lag=1)</p></td>
+<td><p>Returns Pearson correlation between s and shifted s</p></td>
+</tr>
+<tr class="row-even"><td><p>s.corr(other, method=’pearson’)</p></td>
+<td><p>Returns correlation coefficient for ‘pearson’, ‘spearman’, ‘kendall’, or a callable.</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.cov(other, min_periods=None)</p></td>
+<td><p>Returns covariance.</p></td>
+</tr>
+<tr class="row-even"><td><p>s.min(axis=None, skipna=None, level=None,numeric_only=None)</p></td>
+<td><p>Returns maximum value.</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.mean(axis=None, skipna=None,level=None, numeric_only=None)</p></td>
+<td><p>Returns minumum value.</p></td>
+</tr>
+<tr class="row-even"><td><p>s.median(axis=None, skipna=None,level=None, numeric_only=None)</p></td>
+<td><p>Returns mean value.</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.prod(axis=None, skipna=None,level=None, numeric_only=None,min_count=0)</p></td>
+<td><p>Returns product of s values.</p></td>
+</tr>
+<tr class="row-even"><td><p>s.quantile(q=.5, interpolation=’linear’)</p></td>
+<td><p>Returns 50% quantile by default. Note returns Series if q is a list</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.sem(axis=None, skipna=None, level=None,ddof=1, numeric_only=None)</p></td>
+<td><p>Returns unbiased standard error of mean.</p></td>
+</tr>
+<tr class="row-even"><td><p>s.sem(axis=None, skipna=None, level=None,ddof=1, numeric_only=None)</p></td>
+<td><p>Returns unbiased standard error of mean.</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.sem(axis=None, skipna=None, level=None,ddof=1, numeric_only=None)</p></td>
+<td><p>Returns unbiased standard error of mean.</p></td>
+</tr>
+<tr class="row-even"><td><p>s.std(axis=None, skipna=None, level=None, ddof=1, numeric_only=None)</p></td>
+<td><p>Returns sample standard deviation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.var(axis=None, skipna=None, level=None, ddof=1, numeric_only=None)</p></td>
+<td><p>Returns unbiased variance.</p></td>
+</tr>
+<tr class="row-even"><td><p>s.skew(axis=None, skipna=None, level=None, numeric_only=None)</p></td>
+<td><p>Returns unbiased skew.</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.kurtosis(axis=None, skipna=None, level=None, numeric_only=None)</p></td>
+<td><p>Returns unbiased kurtosis.</p></td>
+</tr>
+<tr class="row-even"><td><p>s.nunique(dropna=True)</p></td>
+<td><p>Returns count of unique items.</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.count(level=None)</p></td>
+<td><p>Returns count of non-missing items.</p></td>
+</tr>
+<tr class="row-even"><td><p>s.size</p></td>
+<td><p>Number of items in series. (Property)</p></td>
+</tr>
+<tr class="row-odd"><td><p>s.is_unique</p></td>
+<td><p>True if all values are unique</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metode</p></th>
+<th class="head"><p>Beskrivelse</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>pd.crosstab(index, columns, values=None,rownames=None, colnames=None,aggfunc=None, margins=False,margins_name=’All’, dropna=True,normalize=False)</p></td>
+<td><p>Create a cross-tabulation (counts by default) from an index (series or list of series) and columns (series or list of series). Can specify a column (series) to aggregate values along with a function, aggfunc. Using margins=True will add subtotals. Using dropna=False will keep columns that have no values. Can normalize over ‘all’ values, the rows (‘index’), or the ‘columns’.</p></td>
+</tr>
+<tr class="row-odd"><td><p>.pivot_table(values=None, index=None,columns=None, aggfunc=’mean’,fill_value=None, margins=False,margins_name=’All’, dropna=True,observed=False, sort=True)</p></td>
+<td><p>Create a pivot table. Use index (series, column name, pd.Grouper, or list of previous) to specify index entries. Use columns (series, column name, pd.Grouper, or list of previous) to specify column entries. The aggfunc (function, list of functions, dictionary (column name to function or list of functions) specifies function to aggregate values. Missing values are replaced with fill_value. Set margins=True to add subtotals/totals. Using dropna=False will keep columns that have no values. Use observed=True to only show values that appeared for categorical groupers.</p></td>
+</tr>
+<tr class="row-even"><td><p>.groupby(by=None, axis=0, level=None,as_index=True, sort=True,group_keys=True, observed=False,dropna=True)</p></td>
+<td><p>Return a grouper object, grouped using by (column name, function (accepts each index value, returns group name/id), series, pd.Grouper, or list of column names). Use as_index=False to leave grouping keys as columns. Common plot parameters. Use observed=True to only show values that appeared for categorical groupers. Using dropna=False will keep columns that have no values.</p></td>
+</tr>
+<tr class="row-odd"><td><p>df.resample(rule, axis=0, closed=None,label=None, convention=’start’,kind=None, on=None, level=None,origin=’start_day’)</p></td>
+<td><p>Return a resampled dataframe (with a date in the index, or specify the date column with on). Set closed to ‘right’ to include the right side of interval (default is ‘right’ for M/A/Q/BM/BQ/W). Set the label to ‘right’ to use the right label for bucket. Can specify the timestamp to start origin.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;00_data_raw/bikes.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bike.id</th>
+      <th>model</th>
+      <th>description</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Supersix Evo Black Inc.</td>
+      <td>Road - Elite Road - Carbon</td>
+      <td>12790</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Supersix Evo Hi-Mod Team</td>
+      <td>Road - Elite Road - Carbon</td>
+      <td>10660</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Supersix Evo Hi-Mod Dura Ace 1</td>
+      <td>Road - Elite Road - Carbon</td>
+      <td>7990</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Supersix Evo Hi-Mod Dura Ace 2</td>
+      <td>Road - Elite Road - Carbon</td>
+      <td>5330</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Supersix Evo Hi-Mod Utegra</td>
+      <td>Road - Elite Road - Carbon</td>
+      <td>4260</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df</span>
+    <span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>383515
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="aggandaggregationstrings">
+<h3>.aggandAggregationStrings<a class="headerlink" href="#aggandaggregationstrings" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">.agg</span></code> metoden transformer data. Det er også brugbar hvis man har flere aggregationer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df</span>
+    <span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="nb">sum</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sum     3.835150e+05
+mean    3.953763e+03
+var     8.247762e+06
+Name: price, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Du kan også tilføje en dictonary så kan lave udregninger på flere kolonner.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">],</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>model</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>97.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>sum</th>
+      <td>NaN</td>
+      <td>383515.0</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>NaN</td>
+      <td>12790.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Til pandas er der en række metoder der går igen for aggreation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bikesshop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;00_data_raw/orderlines.xlsx&quot;</span><span class="p">)</span>
+<span class="n">bikesshop</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl&#39;s default
+  warn(&quot;Workbook contains no default style, apply openpyxl&#39;s default&quot;)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>order.id</th>
+      <th>order.line</th>
+      <th>order.date</th>
+      <th>customer.id</th>
+      <th>product.id</th>
+      <th>quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2011-01-07</td>
+      <td>2.0</td>
+      <td>48.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2011-01-07</td>
+      <td>2.0</td>
+      <td>52.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2011-01-10</td>
+      <td>10.0</td>
+      <td>76.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2011-01-10</td>
+      <td>10.0</td>
+      <td>52.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>2011-01-10</td>
+      <td>6.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">ascii_uppercase</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ascii_uppercase</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100_000</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+      <th>G</th>
+      <th>H</th>
+      <th>I</th>
+      <th>J</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>52</td>
+      <td>93</td>
+      <td>15</td>
+      <td>72</td>
+      <td>61</td>
+      <td>21</td>
+      <td>83</td>
+      <td>87</td>
+      <td>75</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>88</td>
+      <td>24</td>
+      <td>3</td>
+      <td>22</td>
+      <td>53</td>
+      <td>2</td>
+      <td>88</td>
+      <td>30</td>
+      <td>38</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>64</td>
+      <td>60</td>
+      <td>21</td>
+      <td>33</td>
+      <td>76</td>
+      <td>58</td>
+      <td>22</td>
+      <td>89</td>
+      <td>49</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>59</td>
+      <td>42</td>
+      <td>92</td>
+      <td>60</td>
+      <td>80</td>
+      <td>15</td>
+      <td>62</td>
+      <td>62</td>
+      <td>47</td>
+      <td>62</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>51</td>
+      <td>55</td>
+      <td>64</td>
+      <td>3</td>
+      <td>51</td>
+      <td>7</td>
+      <td>21</td>
+      <td>73</td>
+      <td>39</td>
+      <td>18</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="pivot-table">
+<h3><code class="docutils literal notranslate"><span class="pre">pivot_table</span></code><a class="headerlink" href="#pivot-table" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>B</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>...</th>
+      <th>90</th>
+      <th>91</th>
+      <th>92</th>
+      <th>93</th>
+      <th>94</th>
+      <th>95</th>
+      <th>96</th>
+      <th>97</th>
+      <th>98</th>
+      <th>99</th>
+    </tr>
+    <tr>
+      <th>A</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>15</td>
+      <td>9</td>
+      <td>8</td>
+      <td>10</td>
+      <td>15</td>
+      <td>10</td>
+      <td>12</td>
+      <td>17</td>
+      <td>12</td>
+      <td>10</td>
+      <td>...</td>
+      <td>11</td>
+      <td>11</td>
+      <td>6</td>
+      <td>9</td>
+      <td>9</td>
+      <td>6</td>
+      <td>9</td>
+      <td>10</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>14</td>
+      <td>5</td>
+      <td>13</td>
+      <td>6</td>
+      <td>5</td>
+      <td>11</td>
+      <td>11</td>
+      <td>15</td>
+      <td>10</td>
+      <td>13</td>
+      <td>...</td>
+      <td>9</td>
+      <td>9</td>
+      <td>6</td>
+      <td>12</td>
+      <td>8</td>
+      <td>7</td>
+      <td>14</td>
+      <td>8</td>
+      <td>6</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>12</td>
+      <td>11</td>
+      <td>10</td>
+      <td>15</td>
+      <td>8</td>
+      <td>12</td>
+      <td>9</td>
+      <td>12</td>
+      <td>8</td>
+      <td>13</td>
+      <td>...</td>
+      <td>12</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>8</td>
+      <td>10</td>
+      <td>13</td>
+      <td>9</td>
+      <td>10</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>6</td>
+      <td>21</td>
+      <td>13</td>
+      <td>10</td>
+      <td>8</td>
+      <td>10</td>
+      <td>14</td>
+      <td>14</td>
+      <td>12</td>
+      <td>5</td>
+      <td>...</td>
+      <td>12</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>10</td>
+      <td>9</td>
+      <td>4</td>
+      <td>3</td>
+      <td>13</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>9</td>
+      <td>8</td>
+      <td>9</td>
+      <td>6</td>
+      <td>8</td>
+      <td>3</td>
+      <td>8</td>
+      <td>10</td>
+      <td>12</td>
+      <td>14</td>
+      <td>...</td>
+      <td>6</td>
+      <td>9</td>
+      <td>14</td>
+      <td>10</td>
+      <td>10</td>
+      <td>12</td>
+      <td>4</td>
+      <td>8</td>
+      <td>10</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>12</td>
+      <td>16</td>
+      <td>8</td>
+      <td>14</td>
+      <td>11</td>
+      <td>10</td>
+      <td>7</td>
+      <td>13</td>
+      <td>8</td>
+      <td>8</td>
+      <td>...</td>
+      <td>13</td>
+      <td>12</td>
+      <td>11</td>
+      <td>10</td>
+      <td>13</td>
+      <td>9</td>
+      <td>12</td>
+      <td>11</td>
+      <td>10</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>12</td>
+      <td>7</td>
+      <td>11</td>
+      <td>12</td>
+      <td>11</td>
+      <td>13</td>
+      <td>8</td>
+      <td>7</td>
+      <td>8</td>
+      <td>6</td>
+      <td>...</td>
+      <td>11</td>
+      <td>9</td>
+      <td>18</td>
+      <td>11</td>
+      <td>9</td>
+      <td>7</td>
+      <td>6</td>
+      <td>6</td>
+      <td>11</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>9</td>
+      <td>11</td>
+      <td>5</td>
+      <td>8</td>
+      <td>5</td>
+      <td>10</td>
+      <td>10</td>
+      <td>...</td>
+      <td>15</td>
+      <td>15</td>
+      <td>9</td>
+      <td>13</td>
+      <td>9</td>
+      <td>9</td>
+      <td>3</td>
+      <td>7</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>11</td>
+      <td>9</td>
+      <td>2</td>
+      <td>8</td>
+      <td>12</td>
+      <td>8</td>
+      <td>9</td>
+      <td>7</td>
+      <td>4</td>
+      <td>9</td>
+      <td>...</td>
+      <td>11</td>
+      <td>7</td>
+      <td>14</td>
+      <td>13</td>
+      <td>10</td>
+      <td>13</td>
+      <td>10</td>
+      <td>9</td>
+      <td>14</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>6</td>
+      <td>9</td>
+      <td>14</td>
+      <td>12</td>
+      <td>6</td>
+      <td>7</td>
+      <td>10</td>
+      <td>5</td>
+      <td>11</td>
+      <td>11</td>
+      <td>...</td>
+      <td>11</td>
+      <td>10</td>
+      <td>6</td>
+      <td>16</td>
+      <td>9</td>
+      <td>13</td>
+      <td>6</td>
+      <td>6</td>
+      <td>11</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+<p>99 rows × 99 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="crosstab">
+<h3><code class="docutils literal notranslate"><span class="pre">crosstab</span></code><a class="headerlink" href="#crosstab" title="Permalink to this headline">¶</a></h3>
+<p>Vi kan også bruge <code class="docutils literal notranslate"><span class="pre">crosstab</span></code>, som er forskellige fra pivot_table  da den tager serier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df</span>
+    <span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span>
+                 <span class="n">index</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span>
+                 <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">,</span>
+                 <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span>
+                 <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>B</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>...</th>
+      <th>90</th>
+      <th>91</th>
+      <th>92</th>
+      <th>93</th>
+      <th>94</th>
+      <th>95</th>
+      <th>96</th>
+      <th>97</th>
+      <th>98</th>
+      <th>99</th>
+    </tr>
+    <tr>
+      <th>A</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>15</td>
+      <td>9</td>
+      <td>8</td>
+      <td>10</td>
+      <td>15</td>
+      <td>10</td>
+      <td>12</td>
+      <td>17</td>
+      <td>12</td>
+      <td>10</td>
+      <td>...</td>
+      <td>11</td>
+      <td>11</td>
+      <td>6</td>
+      <td>9</td>
+      <td>9</td>
+      <td>6</td>
+      <td>9</td>
+      <td>10</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>14</td>
+      <td>5</td>
+      <td>13</td>
+      <td>6</td>
+      <td>5</td>
+      <td>11</td>
+      <td>11</td>
+      <td>15</td>
+      <td>10</td>
+      <td>13</td>
+      <td>...</td>
+      <td>9</td>
+      <td>9</td>
+      <td>6</td>
+      <td>12</td>
+      <td>8</td>
+      <td>7</td>
+      <td>14</td>
+      <td>8</td>
+      <td>6</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>12</td>
+      <td>11</td>
+      <td>10</td>
+      <td>15</td>
+      <td>8</td>
+      <td>12</td>
+      <td>9</td>
+      <td>12</td>
+      <td>8</td>
+      <td>13</td>
+      <td>...</td>
+      <td>12</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>8</td>
+      <td>10</td>
+      <td>13</td>
+      <td>9</td>
+      <td>10</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>6</td>
+      <td>21</td>
+      <td>13</td>
+      <td>10</td>
+      <td>8</td>
+      <td>10</td>
+      <td>14</td>
+      <td>14</td>
+      <td>12</td>
+      <td>5</td>
+      <td>...</td>
+      <td>12</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>10</td>
+      <td>9</td>
+      <td>4</td>
+      <td>3</td>
+      <td>13</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>9</td>
+      <td>8</td>
+      <td>9</td>
+      <td>6</td>
+      <td>8</td>
+      <td>3</td>
+      <td>8</td>
+      <td>10</td>
+      <td>12</td>
+      <td>14</td>
+      <td>...</td>
+      <td>6</td>
+      <td>9</td>
+      <td>14</td>
+      <td>10</td>
+      <td>10</td>
+      <td>12</td>
+      <td>4</td>
+      <td>8</td>
+      <td>10</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>12</td>
+      <td>16</td>
+      <td>8</td>
+      <td>14</td>
+      <td>11</td>
+      <td>10</td>
+      <td>7</td>
+      <td>13</td>
+      <td>8</td>
+      <td>8</td>
+      <td>...</td>
+      <td>13</td>
+      <td>12</td>
+      <td>11</td>
+      <td>10</td>
+      <td>13</td>
+      <td>9</td>
+      <td>12</td>
+      <td>11</td>
+      <td>10</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>12</td>
+      <td>7</td>
+      <td>11</td>
+      <td>12</td>
+      <td>11</td>
+      <td>13</td>
+      <td>8</td>
+      <td>7</td>
+      <td>8</td>
+      <td>6</td>
+      <td>...</td>
+      <td>11</td>
+      <td>9</td>
+      <td>18</td>
+      <td>11</td>
+      <td>9</td>
+      <td>7</td>
+      <td>6</td>
+      <td>6</td>
+      <td>11</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>9</td>
+      <td>11</td>
+      <td>5</td>
+      <td>8</td>
+      <td>5</td>
+      <td>10</td>
+      <td>10</td>
+      <td>...</td>
+      <td>15</td>
+      <td>15</td>
+      <td>9</td>
+      <td>13</td>
+      <td>9</td>
+      <td>9</td>
+      <td>3</td>
+      <td>7</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>11</td>
+      <td>9</td>
+      <td>2</td>
+      <td>8</td>
+      <td>12</td>
+      <td>8</td>
+      <td>9</td>
+      <td>7</td>
+      <td>4</td>
+      <td>9</td>
+      <td>...</td>
+      <td>11</td>
+      <td>7</td>
+      <td>14</td>
+      <td>13</td>
+      <td>10</td>
+      <td>13</td>
+      <td>10</td>
+      <td>9</td>
+      <td>14</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>6</td>
+      <td>9</td>
+      <td>14</td>
+      <td>12</td>
+      <td>6</td>
+      <td>7</td>
+      <td>10</td>
+      <td>5</td>
+      <td>11</td>
+      <td>11</td>
+      <td>...</td>
+      <td>11</td>
+      <td>10</td>
+      <td>6</td>
+      <td>16</td>
+      <td>9</td>
+      <td>13</td>
+      <td>6</td>
+      <td>6</td>
+      <td>11</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+<p>99 rows × 99 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="groupby">
+<h3><code class="docutils literal notranslate"><span class="pre">groupby</span></code><a class="headerlink" href="#groupby" title="Permalink to this headline">¶</a></h3>
+<p>Den sidste metode er <code class="docutils literal notranslate"><span class="pre">groupby</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
+    <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>B</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>...</th>
+      <th>90</th>
+      <th>91</th>
+      <th>92</th>
+      <th>93</th>
+      <th>94</th>
+      <th>95</th>
+      <th>96</th>
+      <th>97</th>
+      <th>98</th>
+      <th>99</th>
+    </tr>
+    <tr>
+      <th>A</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>15</td>
+      <td>9</td>
+      <td>8</td>
+      <td>10</td>
+      <td>15</td>
+      <td>10</td>
+      <td>12</td>
+      <td>17</td>
+      <td>12</td>
+      <td>10</td>
+      <td>...</td>
+      <td>11</td>
+      <td>11</td>
+      <td>6</td>
+      <td>9</td>
+      <td>9</td>
+      <td>6</td>
+      <td>9</td>
+      <td>10</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>14</td>
+      <td>5</td>
+      <td>13</td>
+      <td>6</td>
+      <td>5</td>
+      <td>11</td>
+      <td>11</td>
+      <td>15</td>
+      <td>10</td>
+      <td>13</td>
+      <td>...</td>
+      <td>9</td>
+      <td>9</td>
+      <td>6</td>
+      <td>12</td>
+      <td>8</td>
+      <td>7</td>
+      <td>14</td>
+      <td>8</td>
+      <td>6</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>12</td>
+      <td>11</td>
+      <td>10</td>
+      <td>15</td>
+      <td>8</td>
+      <td>12</td>
+      <td>9</td>
+      <td>12</td>
+      <td>8</td>
+      <td>13</td>
+      <td>...</td>
+      <td>12</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>8</td>
+      <td>10</td>
+      <td>13</td>
+      <td>9</td>
+      <td>10</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>6</td>
+      <td>21</td>
+      <td>13</td>
+      <td>10</td>
+      <td>8</td>
+      <td>10</td>
+      <td>14</td>
+      <td>14</td>
+      <td>12</td>
+      <td>5</td>
+      <td>...</td>
+      <td>12</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>10</td>
+      <td>9</td>
+      <td>4</td>
+      <td>3</td>
+      <td>13</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>9</td>
+      <td>8</td>
+      <td>9</td>
+      <td>6</td>
+      <td>8</td>
+      <td>3</td>
+      <td>8</td>
+      <td>10</td>
+      <td>12</td>
+      <td>14</td>
+      <td>...</td>
+      <td>6</td>
+      <td>9</td>
+      <td>14</td>
+      <td>10</td>
+      <td>10</td>
+      <td>12</td>
+      <td>4</td>
+      <td>8</td>
+      <td>10</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>12</td>
+      <td>16</td>
+      <td>8</td>
+      <td>14</td>
+      <td>11</td>
+      <td>10</td>
+      <td>7</td>
+      <td>13</td>
+      <td>8</td>
+      <td>8</td>
+      <td>...</td>
+      <td>13</td>
+      <td>12</td>
+      <td>11</td>
+      <td>10</td>
+      <td>13</td>
+      <td>9</td>
+      <td>12</td>
+      <td>11</td>
+      <td>10</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>12</td>
+      <td>7</td>
+      <td>11</td>
+      <td>12</td>
+      <td>11</td>
+      <td>13</td>
+      <td>8</td>
+      <td>7</td>
+      <td>8</td>
+      <td>6</td>
+      <td>...</td>
+      <td>11</td>
+      <td>9</td>
+      <td>18</td>
+      <td>11</td>
+      <td>9</td>
+      <td>7</td>
+      <td>6</td>
+      <td>6</td>
+      <td>11</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>9</td>
+      <td>11</td>
+      <td>5</td>
+      <td>8</td>
+      <td>5</td>
+      <td>10</td>
+      <td>10</td>
+      <td>...</td>
+      <td>15</td>
+      <td>15</td>
+      <td>9</td>
+      <td>13</td>
+      <td>9</td>
+      <td>9</td>
+      <td>3</td>
+      <td>7</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>11</td>
+      <td>9</td>
+      <td>2</td>
+      <td>8</td>
+      <td>12</td>
+      <td>8</td>
+      <td>9</td>
+      <td>7</td>
+      <td>4</td>
+      <td>9</td>
+      <td>...</td>
+      <td>11</td>
+      <td>7</td>
+      <td>14</td>
+      <td>13</td>
+      <td>10</td>
+      <td>13</td>
+      <td>10</td>
+      <td>9</td>
+      <td>14</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>6</td>
+      <td>9</td>
+      <td>14</td>
+      <td>12</td>
+      <td>6</td>
+      <td>7</td>
+      <td>10</td>
+      <td>5</td>
+      <td>11</td>
+      <td>11</td>
+      <td>...</td>
+      <td>11</td>
+      <td>10</td>
+      <td>6</td>
+      <td>16</td>
+      <td>9</td>
+      <td>13</td>
+      <td>6</td>
+      <td>6</td>
+      <td>11</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+<p>99 rows × 99 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="forskel-mellem-funktionerne">
+<h3>Forskel mellem funktionerne<a class="headerlink" href="#forskel-mellem-funktionerne" title="Permalink to this headline">¶</a></h3>
+<p>Vi kan gøre det samme for multiple aggrestioner.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">(</span>
+    <span class="n">df</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
+    <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.18 ms ± 7.03 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="p">(</span>
+    <span class="n">df</span>
+    <span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span>
+                 <span class="n">index</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span>
+                 <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">,</span>
+                 <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span>
+                 <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.81 ms ± 27.9 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>68.8 ms ± 222 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+
+<span class="k">def</span> <span class="nf">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">groupby</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="p">(</span>
+        <span class="n">df</span>
+        <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">])</span>
+        <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span>
+        <span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">pivot_table</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="p">(</span>
+        <span class="n">df</span>
+        <span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span>
+                     <span class="n">index</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span>
+                     <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">,</span>
+                     <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span>
+                     <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">)</span>
+
+
+<span class="n">funcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">crosstab</span><span class="p">,</span> <span class="n">groupby</span><span class="p">,</span> <span class="n">pivot_table</span><span class="p">]</span>
+<span class="n">measurements</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Use a seed distinct from above to prevent caching</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">420</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">:</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="s1">&#39;func(df)&#39;</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="n">repetitions</span><span class="p">,</span> <span class="nb">globals</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span> <span class="o">/</span> <span class="n">repetitions</span>
+        <span class="n">measurements</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;Function&#39;</span><span class="p">:</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="s1">&#39;Row count&#39;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span> <span class="s1">&#39;duration&#39;</span><span class="p">:</span> <span class="n">duration</span><span class="p">})</span>
+        
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-poster&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Row count&#39;</span><span class="p">,</span> <span class="s1">&#39;Function&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">duration</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;DataFrame row count&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Duration in seconds&#39;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Runtime Comparison of pandas crosstab, groupby and pivot_table&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0.98, &#39;Runtime Comparison of pandas crosstab, groupby and pivot_table&#39;)
+</pre></div>
+</div>
+<img alt="_images/Pandas_35_1.png" src="_images/Pandas_35_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="tidsserier-resample">
+<h3>Tidsserier <code class="docutils literal notranslate"><span class="pre">.resample</span></code><a class="headerlink" href="#tidsserier-resample" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas_datareader</span> <span class="k">as</span> <span class="nn">pdr</span>
+<span class="c1"># Request data via Yahoo public API</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_yahoo</span><span class="p">(</span><span class="s1">&#39;NVDA&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Open</th>
+      <th>Close</th>
+      <th>Volume</th>
+      <th>Adj Close</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-05-25</th>
+      <td>35.007500</td>
+      <td>34.110001</td>
+      <td>35.000000</td>
+      <td>34.564999</td>
+      <td>60822800.0</td>
+      <td>34.188549</td>
+    </tr>
+    <tr>
+      <th>2017-05-26</th>
+      <td>36.320000</td>
+      <td>34.277500</td>
+      <td>34.482498</td>
+      <td>35.459999</td>
+      <td>77914000.0</td>
+      <td>35.073795</td>
+    </tr>
+    <tr>
+      <th>2017-05-30</th>
+      <td>36.572498</td>
+      <td>35.762501</td>
+      <td>35.924999</td>
+      <td>36.217499</td>
+      <td>98965200.0</td>
+      <td>35.823055</td>
+    </tr>
+    <tr>
+      <th>2017-05-31</th>
+      <td>36.750000</td>
+      <td>35.512501</td>
+      <td>36.672501</td>
+      <td>36.087502</td>
+      <td>88731600.0</td>
+      <td>35.694466</td>
+    </tr>
+    <tr>
+      <th>2017-06-01</th>
+      <td>36.257500</td>
+      <td>35.630001</td>
+      <td>36.247501</td>
+      <td>36.090000</td>
+      <td>50334000.0</td>
+      <td>35.696945</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">data</span>
+    <span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Close&#39;</span><span class="p">]]</span>
+    <span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Close</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-05-28</th>
+      <td>70.024998</td>
+    </tr>
+    <tr>
+      <th>2017-06-04</th>
+      <td>144.305000</td>
+    </tr>
+    <tr>
+      <th>2017-06-11</th>
+      <td>188.502499</td>
+    </tr>
+    <tr>
+      <th>2017-06-18</th>
+      <td>189.269997</td>
+    </tr>
+    <tr>
+      <th>2017-06-25</th>
+      <td>196.520000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2022-05-01</th>
+      <td>954.340012</td>
+    </tr>
+    <tr>
+      <th>2022-05-08</th>
+      <td>969.880005</td>
+    </tr>
+    <tr>
+      <th>2022-05-15</th>
+      <td>850.559998</td>
+    </tr>
+    <tr>
+      <th>2022-05-22</th>
+      <td>861.970016</td>
+    </tr>
+    <tr>
+      <th>2022-05-29</th>
+      <td>330.749893</td>
+    </tr>
+  </tbody>
+</table>
+<p>262 rows × 1 columns</p>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="melting-transposing-and-stacking-data">
+<h2>Melting, Transposing, and Stacking Data<a class="headerlink" href="#melting-transposing-and-stacking-data" title="Permalink to this headline">¶</a></h2>
+<p>Data kan organiseret mange måde, men to centrale måder er <strong>wide</strong> og <strong>long</strong>. Dog kan der være fordele og ulemper ved at have data i en af de respektive formater. For mit eget vedkommende kan jeg bedst lide long format til at lave analyser og plots.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metode</p></th>
+<th class="head"><p>Beskrivelse</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>.melt(id_vars=None, value_vars=None, var_name=None, value_name=’value’, col_level=None, ignore_index=True)</p></td>
+<td><p>Returner en unpivoted dataframe.</p></td>
+</tr>
+<tr class="row-odd"><td><p>.reset_index(level=None, drop=False,col_level=0, col_fill=’’)</p></td>
+<td><p>Returner et nyt index level</p></td>
+</tr>
+<tr class="row-even"><td><p>.pivot_table(values=None, index=None,columns=None, aggfunc=’mean’,fill_value=None, margins=False,margins_name=’All’, dropna=True,observed=False, sort=True)</p></td>
+<td><p>Laver en pivot table. <code class="docutils literal notranslate"><span class="pre">Index</span></code> laver index indgangen. <code class="docutils literal notranslate"><span class="pre">columns</span></code> til kolonne indgangen. <code class="docutils literal notranslate"><span class="pre">aggfunc</span></code> angiver en dictornary til enkelte eller flere aggregertion funktioner.<code class="docutils literal notranslate"><span class="pre">fill_value</span></code> udfylder missing værdier. <code class="docutils literal notranslate"><span class="pre">margins</span></code> til at vise subtotaler.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>     <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="s1">&#39;name&#39;</span><span class="p">:[</span><span class="s1">&#39;Adam&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Dave&#39;</span><span class="p">,</span> <span class="s1">&#39;Fred&#39;</span><span class="p">],</span> 
+<span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+<span class="s1">&#39;test1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">95</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+<span class="s1">&#39;test2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">88</span><span class="p">],</span>
+<span class="s1">&#39;teacher&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Ashby&#39;</span><span class="p">,</span> <span class="s1">&#39;Ashby&#39;</span><span class="p">,</span> <span class="s1">&#39;Jones&#39;</span><span class="p">,</span> <span class="s1">&#39;Jones&#39;</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>age</th>
+      <th>test1</th>
+      <th>test2</th>
+      <th>teacher</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adam</td>
+      <td>15</td>
+      <td>95.0</td>
+      <td>80</td>
+      <td>Ashby</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>16</td>
+      <td>81.0</td>
+      <td>82</td>
+      <td>Ashby</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Dave</td>
+      <td>16</td>
+      <td>89.0</td>
+      <td>84</td>
+      <td>Jones</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Fred</td>
+      <td>15</td>
+      <td>NaN</td>
+      <td>88</td>
+      <td>Jones</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="melting">
+<h3>Melting<a class="headerlink" href="#melting" title="Permalink to this headline">¶</a></h3>
+<p>Med <code class="docutils literal notranslate"><span class="pre">Melt</span></code> kan vi gå fra wide til long format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">scores</span>
+    <span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+        <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">],</span>
+        <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;test1&#39;</span><span class="p">,</span> <span class="s1">&#39;test2&#39;</span><span class="p">],</span>
+        <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> 
+        <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;score&#39;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>age</th>
+      <th>test</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adam</td>
+      <td>15</td>
+      <td>test1</td>
+      <td>95.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>16</td>
+      <td>test1</td>
+      <td>81.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Dave</td>
+      <td>16</td>
+      <td>test1</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Fred</td>
+      <td>15</td>
+      <td>test1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Adam</td>
+      <td>15</td>
+      <td>test2</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Bob</td>
+      <td>16</td>
+      <td>test2</td>
+      <td>82.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Dave</td>
+      <td>16</td>
+      <td>test2</td>
+      <td>84.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Fred</td>
+      <td>15</td>
+      <td>test2</td>
+      <td>88.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Hvis vi skulle gøre det uden melt funktionen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+<span class="n">scores</span>
+<span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">])</span> 
+<span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">g</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+    <span class="n">g</span><span class="p">[[</span><span class="s1">&#39;test1&#39;</span><span class="p">]]</span>
+    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;test1&#39;</span><span class="p">:</span><span class="s1">&#39;val&#39;</span><span class="p">})</span>
+    <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">var</span><span class="o">=</span><span class="s1">&#39;test1&#39;</span><span class="p">),</span>
+    <span class="n">g</span><span class="p">[[</span><span class="s1">&#39;test2&#39;</span><span class="p">]]</span>
+    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;test2&#39;</span><span class="p">:</span><span class="s1">&#39;val&#39;</span><span class="p">})</span>
+    <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">var</span><span class="o">=</span><span class="s1">&#39;test2&#39;</span><span class="p">)]))</span> 
+<span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;level_2&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>age</th>
+      <th>val</th>
+      <th>var</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adam</td>
+      <td>15</td>
+      <td>95.0</td>
+      <td>test1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adam</td>
+      <td>15</td>
+      <td>80.0</td>
+      <td>test2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Bob</td>
+      <td>16</td>
+      <td>81.0</td>
+      <td>test1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bob</td>
+      <td>16</td>
+      <td>82.0</td>
+      <td>test2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Dave</td>
+      <td>16</td>
+      <td>89.0</td>
+      <td>test1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Dave</td>
+      <td>16</td>
+      <td>84.0</td>
+      <td>test2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Fred</td>
+      <td>15</td>
+      <td>NaN</td>
+      <td>test1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Fred</td>
+      <td>15</td>
+      <td>88.0</td>
+      <td>test2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Vores data står i long format men lad os konvertere det lidt frem og tilbage.</p>
+</div>
+<div class="section" id="un-melting">
+<h3>Un melting<a class="headerlink" href="#un-melting" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melted</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">scores</span>
+    <span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+        <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;teacher&#39;</span><span class="p">],</span>
+        <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;test1&#39;</span><span class="p">,</span> <span class="s1">&#39;test2&#39;</span><span class="p">],</span>
+        <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> 
+        <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;score&#39;</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="n">melted</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>age</th>
+      <th>teacher</th>
+      <th>test</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adam</td>
+      <td>15</td>
+      <td>Ashby</td>
+      <td>test1</td>
+      <td>95.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>16</td>
+      <td>Ashby</td>
+      <td>test1</td>
+      <td>81.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Dave</td>
+      <td>16</td>
+      <td>Jones</td>
+      <td>test1</td>
+      <td>89.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Fred</td>
+      <td>15</td>
+      <td>Jones</td>
+      <td>test1</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Adam</td>
+      <td>15</td>
+      <td>Ashby</td>
+      <td>test2</td>
+      <td>80.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">melted</span>
+    <span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;teacher&#39;</span><span class="p">],</span>
+        <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="n">values</span><span class="o">=</span><span class="s1">&#39;score&#39;</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>test</th>
+      <th>name</th>
+      <th>age</th>
+      <th>teacher</th>
+      <th>test1</th>
+      <th>test2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adam</td>
+      <td>15</td>
+      <td>Ashby</td>
+      <td>95.0</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>16</td>
+      <td>Ashby</td>
+      <td>81.0</td>
+      <td>82.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Dave</td>
+      <td>16</td>
+      <td>Jones</td>
+      <td>89.0</td>
+      <td>84.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Fred</td>
+      <td>15</td>
+      <td>Jones</td>
+      <td>NaN</td>
+      <td>88.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">melted</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;teacher&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">score</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>test</th>
+      <th>name</th>
+      <th>age</th>
+      <th>teacher</th>
+      <th>test1</th>
+      <th>test2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adam</td>
+      <td>15</td>
+      <td>Ashby</td>
+      <td>95.0</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Bob</td>
+      <td>16</td>
+      <td>Ashby</td>
+      <td>81.0</td>
+      <td>82.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Dave</td>
+      <td>16</td>
+      <td>Jones</td>
+      <td>89.0</td>
+      <td>84.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Fred</td>
+      <td>15</td>
+      <td>Jones</td>
+      <td>NaN</td>
+      <td>88.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Welcome to your Jupyter Book</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="ml.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Machine Learning</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By The Jupyter Book Community<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
