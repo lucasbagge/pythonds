@@ -902,21 +902,3 @@ print("Root mean square error for egen funktion: {}".format(
 # $$
 # 
 # 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
